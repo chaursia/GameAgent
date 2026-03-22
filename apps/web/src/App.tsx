@@ -12,12 +12,11 @@
 import React, { useEffect, useState } from "react";
 import { AuroraBackground } from "./components/ui/AuroraBackground";
 import { TypewriterEffect } from "./components/ui/TypewriterEffect";
-import { Meteors } from "./components/ui/Meteors";
 import { FloatingNav } from "./components/ui/FloatingNav";
 import { CardSpotlight } from "./components/ui/CardSpotlight";
 import { ShimmerButton } from "./components/ui/ShimmerButton";
 import { GameCanvas } from "./components/GameCanvas";
-import { Server, Activity, Disc3, Grid3X3, PlugZap, Zap, Brain, Sparkles, Gamepad2 } from "lucide-react";
+import { Server, Activity, Disc3, Zap, Brain, Sparkles, Gamepad2 } from "lucide-react";
 
 // ── Server Status ──────────────────────────────────────────────────────
 type ServerStatus = "checking" | "online" | "offline";
@@ -36,6 +35,11 @@ export default function App(): React.JSX.Element {
   const [serverStatus, setServerStatus] = useState<ServerStatus>("checking");
   const [serverVersion, setServerVersion] = useState<string>("");
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard' | 'expert'>('medium');
+  const [selectedGame, setSelectedGame] = useState<'pong' | 'tictactoe' | 'quarto' | 'pentago'>('pong');
+
+  const GAME_LABELS: Record<string, string> = {
+    pong: '🏓 Pong', tictactoe: '❌ Tic-Tac-Toe', quarto: '♟ Quarto', pentago: '⚪ Pentago',
+  };
 
   useEffect(() => {
     fetch("/health")
@@ -129,96 +133,108 @@ export default function App(): React.JSX.Element {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Pong Card */}
-            <CardSpotlight className="h-[400px] flex flex-col justify-between" color="rgba(99, 102, 241, 0.15)">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Pong */}
+            <CardSpotlight className="h-[360px] flex flex-col justify-between" color="rgba(99, 102, 241, 0.15)">
               <div className="relative z-10">
-                <div className="inline-flex px-3 py-1 rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-300 text-xs font-bold uppercase tracking-widest mb-6">
-                  Phase 3
-                </div>
-                <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 to-slate-400 mb-4">Pong</h3>
-                <p className="text-slate-400 font-medium leading-relaxed">
-                  Classic paddle game with heuristic AI. Adjustable difficulty from learning mode to absolute expert.
-                </p>
+                <div className="inline-flex px-3 py-1 rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-300 text-xs font-bold uppercase tracking-widest mb-6">Live ✓</div>
+                <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 to-slate-400 mb-3">Pong</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">Heuristic AI with trajectory prediction. 4 difficulty levels + personality sliders.</p>
               </div>
               <div className="text-6xl self-end text-slate-500 group-hover/spotlight:text-indigo-400 group-hover/spotlight:scale-110 group-hover/spotlight:-rotate-12 transition-all duration-500">
-                <Disc3 className="w-16 h-16" strokeWidth={1.5} />
+                <Disc3 className="w-14 h-14" strokeWidth={1.5} />
               </div>
             </CardSpotlight>
 
-            {/* Snake Card (Meteor) */}
-            <div className="relative h-[400px] w-full rounded-3xl overflow-hidden border border-white/10 bg-slate-900/50 shadow-2xl flex flex-col justify-between p-8 group">
-              <Meteors number={15} />
+            {/* Tic-Tac-Toe */}
+            <CardSpotlight className="h-[360px] flex flex-col justify-between" color="rgba(99, 241, 170, 0.08)">
               <div className="relative z-10">
-                <div className="inline-flex px-3 py-1 rounded-full border border-slate-700 bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-widest mb-6">
-                  Coming Soon
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-4">Snake</h3>
-                <p className="text-slate-400 font-medium leading-relaxed">
-                  Navigate, grow, and outmaneuver the AI on a shared grid. Tactical spatial reasoning required.
-                </p>
+                <div className="inline-flex px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-300 text-xs font-bold uppercase tracking-widest mb-6">Live ✓</div>
+                <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 to-slate-400 mb-3">Tic-Tac-Toe</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">Minimax AI with alpha-beta pruning. Perfect play at Expert, intentional errors at Easy.</p>
               </div>
-              <div className="text-6xl self-end text-slate-600 group-hover:text-emerald-400 group-hover:scale-110 group-hover:translate-x-2 transition-all duration-500">
-                <Grid3X3 className="w-16 h-16" strokeWidth={1.5} />
-              </div>
-            </div>
+              <div className="self-end text-4xl group-hover/spotlight:scale-110 transition-all duration-500">❌</div>
+            </CardSpotlight>
 
-            {/* Plugin Card */}
-            <CardSpotlight className="h-[400px] flex flex-col justify-between" color="rgba(236, 72, 153, 0.1)">
+            {/* Quarto */}
+            <CardSpotlight className="h-[360px] flex flex-col justify-between" color="rgba(241, 99, 200, 0.08)">
               <div className="relative z-10">
-                <div className="inline-flex px-3 py-1 rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-300 text-xs font-bold uppercase tracking-widest mb-6">
-                  Extensible
-                </div>
-                <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 to-slate-400 mb-4">Add a Plugin</h3>
-                <p className="text-slate-400 font-medium leading-relaxed">
-                  Implement the <code className="text-pink-300 bg-pink-950/50 px-1.5 py-0.5 rounded text-sm">GameEngine</code> interface and register your own custom game logic instantly.
-                </p>
+                <div className="inline-flex px-3 py-1 rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-300 text-xs font-bold uppercase tracking-widest mb-6">Live ✓</div>
+                <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 to-slate-400 mb-3">Quarto</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">16 unique pieces, 4 binary attributes. Heuristic AI that avoids giving dangerous pieces.</p>
               </div>
-              <div className="text-6xl self-end text-slate-500 group-hover/spotlight:text-pink-400 group-hover/spotlight:scale-110 group-hover/spotlight:rotate-12 transition-all duration-500">
-                <PlugZap className="w-16 h-16" strokeWidth={1.5} />
+              <div className="self-end text-4xl group-hover/spotlight:scale-110 transition-all duration-500">♟</div>
+            </CardSpotlight>
+
+            {/* Pentago */}
+            <CardSpotlight className="h-[360px] flex flex-col justify-between" color="rgba(99, 170, 241, 0.08)">
+              <div className="relative z-10">
+                <div className="inline-flex px-3 py-1 rounded-full border border-sky-500/20 bg-sky-500/10 text-sky-300 text-xs font-bold uppercase tracking-widest mb-6">Live ✓</div>
+                <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200 to-slate-400 mb-3">Pentago</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">6×6 marble board. Place + rotate a quadrant each turn. Five in a row wins.</p>
               </div>
+              <div className="self-end text-4xl group-hover/spotlight:scale-110 transition-all duration-500">⚪</div>
             </CardSpotlight>
           </div>
         </section>
 
-        {/* ── Play Section ── */}
         <section id="play" className="py-32 px-6 max-w-5xl mx-auto">
           <div className="flex flex-col items-center mb-16 text-center">
             <div className="inline-flex px-3 py-1 rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-300 text-xs font-bold uppercase tracking-widest mb-4">
               Live Demo
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">Play Pong</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">Play vs AI</h2>
             <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-purple-500 mt-6 rounded-full" />
             <p className="text-slate-400 mt-6 max-w-xl text-lg">
-              A real AI opponent, running on the server — completely open-source and self-hosted.
+              Real AI opponents running on the server — self-hosted and open-source.
             </p>
 
-            {/* Difficulty Selector */}
-            <div className="flex gap-3 mt-8">
-              {(['easy', 'medium', 'hard', 'expert'] as const).map((d) => (
+            {/* Game Selector Tabs */}
+            <div className="flex flex-wrap gap-2 mt-8 justify-center">
+              {(['pong', 'tictactoe', 'quarto', 'pentago'] as const).map((g) => (
                 <button
-                  key={d}
-                  onClick={() => setDifficulty(d)}
-                  className={`px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider border transition-all ${
-                    difficulty === d
+                  key={g}
+                  onClick={() => setSelectedGame(g)}
+                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all border ${
+                    selectedGame === g
                       ? 'bg-indigo-600 border-indigo-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.4)]'
                       : 'bg-transparent border-white/10 text-slate-400 hover:border-white/30 hover:text-white'
                   }`}
                 >
-                  {d}
+                  {GAME_LABELS[g]}
                 </button>
               ))}
             </div>
+
+            {/* Difficulty Selector — only meaningful for Pong */}
+            {selectedGame === 'pong' && (
+              <div className="flex gap-3 mt-6">
+                {(['easy', 'medium', 'hard', 'expert'] as const).map((d) => (
+                  <button
+                    key={d}
+                    onClick={() => setDifficulty(d)}
+                    className={`px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider border transition-all ${
+                      difficulty === d
+                        ? 'bg-indigo-600 border-indigo-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.4)]'
+                        : 'bg-transparent border-white/10 text-slate-400 hover:border-white/30 hover:text-white'
+                    }`}
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <GameCanvas
+            gameId={selectedGame}
             difficulty={difficulty}
             playerId="p1"
             className="w-full"
           />
 
           <p className="text-center text-slate-600 text-xs font-mono mt-6">
-            Start the backend server on port 3001 to enable the game.
+            Start the backend server on port 3001 to enable the games.
           </p>
         </section>
 
@@ -436,7 +452,7 @@ export default function App(): React.JSX.Element {
               </span>
             </div>
             <p className="text-slate-500 text-sm font-medium">
-              MIT License &nbsp;·&nbsp; Open Source &nbsp;·&nbsp; <a href="https://github.com" className="text-indigo-400 hover:text-indigo-300 transition-colors">GitHub</a>
+              MIT License &nbsp;·&nbsp; Open Source &nbsp;·&nbsp; <a href="https://github.com/chaursia/GameAgent" className="text-indigo-400 hover:text-indigo-300 transition-colors">GitHub</a>
             </p>
           </div>
         </footer>

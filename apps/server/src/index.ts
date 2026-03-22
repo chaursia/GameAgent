@@ -20,6 +20,9 @@ import { gameRoutes } from './routes/game';
 // Each import calls registry.registerGame() / registry.registerAI().
 // When you add a new game, simply add its import here.
 import '@gameagent/plugins/pong';
+import '@gameagent/plugins/tictactoe';
+import '@gameagent/plugins/quarto';
+import '@gameagent/plugins/pentago';
 import { gameLoopManager } from './session/GameLoopManager';
 
 // ---------------------------------------------------------------------------

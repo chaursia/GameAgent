@@ -17,6 +17,24 @@
       "import": "./dist/pong/index.js",
       "default": "./src/pong/index.ts",
       "types": "./dist/pong/index.d.ts"
+    },
+    "./tictactoe": {
+      "source": "./src/tictactoe/index.ts",
+      "import": "./dist/tictactoe/index.js",
+      "default": "./src/tictactoe/index.ts",
+      "types": "./dist/tictactoe/index.d.ts"
+    },
+    "./quarto": {
+      "source": "./src/quarto/index.ts",
+      "import": "./dist/quarto/index.js",
+      "default": "./src/quarto/index.ts",
+      "types": "./dist/quarto/index.d.ts"
+    },
+    "./pentago": {
+      "source": "./src/pentago/index.ts",
+      "import": "./dist/pentago/index.js",
+      "default": "./src/pentago/index.ts",
+      "types": "./dist/pentago/index.d.ts"
     }
   },
   "scripts": {
