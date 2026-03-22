@@ -22,6 +22,7 @@ import { gameRoutes } from './routes/game';
 
 // (Pong plugin will be imported here in Phase 3)
 import '@gameagent/plugins/src/pong/index';
+import { gameLoopManager } from './session/GameLoopManager';
 
 // ---------------------------------------------------------------------------
 // Main async startup (wrap top-level awaits for CommonJS compatibility)
@@ -87,3 +88,12 @@ main().catch((err: unknown) => {
   console.error('Fatal error during startup:', err);
   process.exit(1);
 });
+
+// Graceful shutdown – stop all game loops before exit
+for (const signal of ['SIGTERM', 'SIGINT'] as const) {
+  process.on(signal, () => {
+    console.info(`\n[Server] ${signal} received – shutting down gracefully…`);
+    gameLoopManager.stopAll();
+    process.exit(0);
+  });
+}

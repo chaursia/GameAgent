@@ -11,7 +11,7 @@
  * survive server restarts. The interface is designed for that future swap.
  */
 
-import type { GameEngine, GameState, Action, PlayerId } from '@gameagent/game-core';
+import type { GameEngine, GameState, Action } from '@gameagent/game-core';
 import type { Agent } from '@gameagent/ai-core';
 
 // ---------------------------------------------------------------------------
