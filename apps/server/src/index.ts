@@ -19,9 +19,7 @@ import { gameRoutes } from './routes/game';
 // Import side-effects that register built-in game + AI plugins.
 // Each import calls registry.registerGame() / registry.registerAI().
 // When you add a new game, simply add its import here.
-
-// (Pong plugin will be imported here in Phase 3)
-import '@gameagent/plugins/src/pong/index';
+import '@gameagent/plugins/pong';
 import { gameLoopManager } from './session/GameLoopManager';
 
 // ---------------------------------------------------------------------------
