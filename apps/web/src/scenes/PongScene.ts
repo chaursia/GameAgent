@@ -163,13 +163,16 @@ export class PongScene extends Phaser.Scene {
     // Clamp to canvas bounds
     this.localPaddleY = Phaser.Math.Clamp(this.localPaddleY, halfH, height - halfH);
 
-    // 3. Gently reconcile toward server position (elastic correction)
-    //    This prevents drifting if the server disagrees, without snapping.
-    this.localPaddleY = Phaser.Math.Linear(
-      this.localPaddleY,
-      this.serverPaddleY,
-      RECONCILE_ALPHA * (delta / 16.67), // frame-rate independent
-    );
+    // 3. Reconcile toward server position ONLY when the key is idle.
+    //    While the key is held the server lags behind, so lerping back
+    //    would fight the player's input and cause the "slowdown on hold" bug.
+    if (this.currentDirection === 'none') {
+      this.localPaddleY = Phaser.Math.Linear(
+        this.localPaddleY,
+        this.serverPaddleY,
+        RECONCILE_ALPHA * (delta / 16.67),
+      );
+    }
 
     // 4. Apply predicted position to the local paddle visual
     const localPaddle = this.playerId === 'p1' ? this.paddleLeft : this.paddleRight;
