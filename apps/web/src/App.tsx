@@ -16,6 +16,7 @@ import { Meteors } from "./components/ui/Meteors";
 import { FloatingNav } from "./components/ui/FloatingNav";
 import { CardSpotlight } from "./components/ui/CardSpotlight";
 import { ShimmerButton } from "./components/ui/ShimmerButton";
+import { GameCanvas } from "./components/GameCanvas";
 import { Server, Activity, Disc3, Grid3X3, PlugZap, Zap, Brain, Sparkles, Gamepad2 } from "lucide-react";
 
 // ── Server Status ──────────────────────────────────────────────────────
@@ -34,6 +35,7 @@ const heroWords = [
 export default function App(): React.JSX.Element {
   const [serverStatus, setServerStatus] = useState<ServerStatus>("checking");
   const [serverVersion, setServerVersion] = useState<string>("");
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard' | 'expert'>('medium');
 
   useEffect(() => {
     fetch("/health")
@@ -47,6 +49,7 @@ export default function App(): React.JSX.Element {
 
   const navItems = [
     { name: "Games", link: "#games" },
+    { name: "Play", link: "#play" },
     { name: "Architecture", link: "#architecture" },
     { name: "Difficulty", link: "#difficulty" },
     {
@@ -176,6 +179,47 @@ export default function App(): React.JSX.Element {
               </div>
             </CardSpotlight>
           </div>
+        </section>
+
+        {/* ── Play Section ── */}
+        <section id="play" className="py-32 px-6 max-w-5xl mx-auto">
+          <div className="flex flex-col items-center mb-16 text-center">
+            <div className="inline-flex px-3 py-1 rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-300 text-xs font-bold uppercase tracking-widest mb-4">
+              Live Demo
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">Play Pong</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-purple-500 mt-6 rounded-full" />
+            <p className="text-slate-400 mt-6 max-w-xl text-lg">
+              A real AI opponent, running on the server — completely open-source and self-hosted.
+            </p>
+
+            {/* Difficulty Selector */}
+            <div className="flex gap-3 mt-8">
+              {(['easy', 'medium', 'hard', 'expert'] as const).map((d) => (
+                <button
+                  key={d}
+                  onClick={() => setDifficulty(d)}
+                  className={`px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider border transition-all ${
+                    difficulty === d
+                      ? 'bg-indigo-600 border-indigo-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.4)]'
+                      : 'bg-transparent border-white/10 text-slate-400 hover:border-white/30 hover:text-white'
+                  }`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <GameCanvas
+            difficulty={difficulty}
+            playerId="p1"
+            className="w-full"
+          />
+
+          <p className="text-center text-slate-600 text-xs font-mono mt-6">
+            Start the backend server on port 3001 to enable the game.
+          </p>
         </section>
 
         {/* ── Architecture Section (Premium Redesign) ── */}

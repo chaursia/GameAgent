@@ -48,7 +48,7 @@ export function HoverEffect({ items, className }: HoverEffectProps): React.JSX.E
               />
             )}
           </AnimatePresence>
-          <Card locked={item.locked}>
+          <Card locked={!!item.locked}>
             {item.badge && (
               <CardBadge variant={item.badgeVariant ?? "accent"}>{item.badge}</CardBadge>
             )}

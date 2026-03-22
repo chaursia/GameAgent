@@ -21,7 +21,7 @@ import { gameRoutes } from './routes/game';
 // When you add a new game, simply add its import here.
 
 // (Pong plugin will be imported here in Phase 3)
-// import '@gameagent/plugins/pong';
+import '@gameagent/plugins/src/pong/index';
 
 // ---------------------------------------------------------------------------
 // Main async startup (wrap top-level awaits for CommonJS compatibility)

@@ -126,3 +126,12 @@ export class PluginRegistry {
 
 /** Singleton registry – import this everywhere */
 export const registry = new PluginRegistry();
+
+// ---------------------------------------------------------------------------
+// Built-in game plugins (re-exported for convenience)
+// ---------------------------------------------------------------------------
+
+export { PongGame, PONG_WIDTH, PONG_HEIGHT } from './pong/PongGame';
+export type { PongState, PongAction, PongDirection } from './pong/PongGame';
+export { PongHeuristicBrain } from './pong/PongHeuristicBrain';
+

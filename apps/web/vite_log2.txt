@@ -293,3 +293,10 @@ internalConnectMultiple
 (node:net:1142:49)
     at afterConnectMultiple 
 (node:net:1723:7)
+[2m3:08:54 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m3:09:18 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m3:11:41 PM[22m [36m[1m[vite][22m[39m changed tsconfig file detected: C:/Users/divya/Documents/GitHub/GameAgent/apps/web/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2m3:11:43 PM[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
+[2m3:11:43 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+[2m3:11:43 PM[22m [36m[1m[vite][22m[39m server restarted.
+[2m3:13:06 PM[22m [36m[1m[vite][22m[39m changed tsconfig file detected: C:/Users/divya/Documents/GitHub/GameAgent/apps/web/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.

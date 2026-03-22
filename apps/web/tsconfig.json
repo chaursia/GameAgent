@@ -5,11 +5,23 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
     "jsx": "react-jsx",
     "outDir": "./dist",
     "noEmit": true,
-    "allowImportingTsExtensions": true
+    "composite": false,
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@gameagent/plugins": ["../../packages/plugins/src/index.ts"],
+      "@gameagent/game-core": ["../../packages/game-core/src/index.ts"],
+      "@gameagent/ai-core": ["../../packages/ai-core/src/index.ts"]
+    }
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "../../packages/plugins/src/**/*",
+    "../../packages/game-core/src/**/*",
+    "../../packages/ai-core/src/**/*"
+  ],
   "exclude": ["node_modules", "dist"]
 }
