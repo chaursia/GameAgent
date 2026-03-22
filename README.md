@@ -372,7 +372,7 @@ npx tsc --noEmit     # in apps/web or apps/server
 ## Changelog
 
 <details>
-<summary><strong>Phase 8 — Board Games: Tic-Tac-Toe, Quarto, Pentago</strong> <code>2026-03-22</code></summary>
+<summary><strong>Phase 8 — Board Games: Tic-Tac-Toe, Quarto, Pentago</strong> </summary>
 
 ### Added
 - `TicTacToeGame` engine — 3×3 board, win detection, `clone()` + `getValidMoves()` for AI lookahead
@@ -393,7 +393,7 @@ npx tsc --noEmit     # in apps/web or apps/server
 </details>
 
 <details>
-<summary><strong>Phase 7 — End-to-End Verification &amp; Input Smoothness Fix</strong> <code>2026-03-22</code></summary>
+<summary><strong>Phase 7 — End-to-End Verification &amp; Input Smoothness Fix</strong> </summary>
 
 ### Added
 - Live end-to-end demo verified (server + frontend + WebSocket game loop)
@@ -407,7 +407,7 @@ npx tsc --noEmit     # in apps/web or apps/server
 </details>
 
 <details>
-<summary><strong>Phase 6 — Frontend Polish &amp; Premium UI</strong> <code>2026-03-22</code></summary>
+<summary><strong>Phase 6 — Frontend Polish &amp; Premium UI</strong> </summary>
 
 ### Added
 - Aceternity UI component suite: `AuroraBackground`, `CardSpotlight`, `TypewriterEffect`, `FloatingNav`, `Meteors`, `ShimmerButton`
@@ -422,7 +422,7 @@ npx tsc --noEmit     # in apps/web or apps/server
 </details>
 
 <details>
-<summary><strong>Phase 5 — Backend Hardening</strong> <code>2026-03-22</code></summary>
+<summary><strong>Phase 5 — Backend Hardening</strong> </summary>
 
 ### Added
 - `GameLoopManager` — server-side 60fps tick loop, independent of client connection
@@ -435,7 +435,7 @@ npx tsc --noEmit     # in apps/web or apps/server
 </details>
 
 <details>
-<summary><strong>Phase 4 — AI System &amp; Difficulty Wiring</strong> <code>2026-03-22</code></summary>
+<summary><strong>Phase 4 — AI System &amp; Difficulty Wiring</strong> </summary>
 
 ### Added
 - `Agent` class — wraps `Brain` + `Personality`, applies reaction delay and mistake injection
@@ -447,7 +447,7 @@ npx tsc --noEmit     # in apps/web or apps/server
 </details>
 
 <details>
-<summary><strong>Phase 3 — Pong Game Plugin</strong> <code>2026-03-22</code></summary>
+<summary><strong>Phase 3 — Pong Game Plugin</strong> </summary>
 
 ### Added
 - `PongGame` engine — ball physics, paddle collision, scoring, 60fps tick
@@ -459,7 +459,7 @@ npx tsc --noEmit     # in apps/web or apps/server
 </details>
 
 <details>
-<summary><strong>Phase 2 — Core Packages</strong> <code>2026-03-22</code></summary>
+<summary><strong>Phase 2 — Core Packages</strong> </summary>
 
 ### Added
 - `@gameagent/game-core` — `GameEngine` abstract class, `GameState`, `Action`, `PlayerId`, `GameEvent` interfaces
@@ -470,7 +470,7 @@ npx tsc --noEmit     # in apps/web or apps/server
 </details>
 
 <details>
-<summary><strong>Phase 1 — Monorepo Setup</strong> <code>2026-03-22</code></summary>
+<summary><strong>Phase 1 — Monorepo Setup</strong> </summary>
 
 ### Added
 - npm workspaces monorepo (`apps/`, `packages/`)
