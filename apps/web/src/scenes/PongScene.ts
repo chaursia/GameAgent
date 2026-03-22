@@ -25,9 +25,6 @@ const API_BASE = '';  // empty = same origin (relative fetch)
 // Paddle speed in pixels per second (local prediction)
 const PADDLE_SPEED_PPS = 400;
 
-// Maximum reconciliation correction per frame (lerp factor)
-const RECONCILE_ALPHA = 0.15;
-
 // ── Scene Data ────────────────────────────────────────────────────────────────
 
 export interface PongSceneData {
@@ -52,9 +49,8 @@ export class PongScene extends Phaser.Scene {
   private playerId: 'p1' | 'p2' = 'p1';
   private isGameOver = false;
 
-  // Local prediction — the predicted Y of the local paddle (in canvas pixels)
-  private localPaddleY = 0;         // centre Y
-  private serverPaddleY = 0;        // last authoritative Y from server
+  // Local paddle — fully client-driven, never reconciled from server
+  private localPaddleY = 0;
   private paddleHeight = 90;        // updated from server state
 
   // Input
@@ -83,7 +79,6 @@ export class PongScene extends Phaser.Scene {
   create() {
     const { width, height } = this.scale;
     this.localPaddleY = height / 2;
-    this.serverPaddleY = height / 2;
 
     // ── Background ───────────────────────────────────────────────────
     this.add.rectangle(width / 2, height / 2, width, height, 0x0a0a0f);
@@ -163,18 +158,7 @@ export class PongScene extends Phaser.Scene {
     // Clamp to canvas bounds
     this.localPaddleY = Phaser.Math.Clamp(this.localPaddleY, halfH, height - halfH);
 
-    // 3. Reconcile toward server position ONLY when the key is idle.
-    //    While the key is held the server lags behind, so lerping back
-    //    would fight the player's input and cause the "slowdown on hold" bug.
-    if (this.currentDirection === 'none') {
-      this.localPaddleY = Phaser.Math.Linear(
-        this.localPaddleY,
-        this.serverPaddleY,
-        RECONCILE_ALPHA * (delta / 16.67),
-      );
-    }
-
-    // 4. Apply predicted position to the local paddle visual
+    // 3. Apply predicted position to the local paddle visual
     const localPaddle = this.playerId === 'p1' ? this.paddleLeft : this.paddleRight;
     if (this.playerId === 'p1') {
       localPaddle.setPosition(0, this.localPaddleY);
@@ -251,11 +235,8 @@ export class PongScene extends Phaser.Scene {
     const p2 = state.paddles['p2'];
 
     // Update paddle height so local clamping stays accurate
-    this.paddleHeight = (this.playerId === 'p1' ? p1.height : p2.height) * scaleY;
-
-    // Update LOCAL paddle server-authoritative target for reconciliation
     const localServerPaddle = this.playerId === 'p1' ? p1 : p2;
-    this.serverPaddleY = (localServerPaddle.y + localServerPaddle.height / 2) * scaleY;
+    this.paddleHeight = localServerPaddle.height * scaleY;
 
     // ── Opponent paddle: snap to server state (no prediction needed) ──
     const opponentPaddle = this.playerId === 'p1' ? this.paddleRight : this.paddleLeft;
