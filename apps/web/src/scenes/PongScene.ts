@@ -13,8 +13,10 @@ import type { PongState } from '@gameagent/plugins';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
-const WS_BASE = 'ws://localhost:3001';
-const API_BASE = 'http://localhost:3001';
+// Use relative paths — Vite dev proxy forwards these to localhost:3001
+// In production, these are served from the same origin
+const WS_BASE = `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}`;
+const API_BASE = '';  // empty = same origin (relative fetch)
 
 // ── Scene Data ────────────────────────────────────────────────────────────────
 

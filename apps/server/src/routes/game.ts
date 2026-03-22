@@ -26,6 +26,7 @@ import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 import { v4 as uuidv4 } from 'uuid';
 import { registry } from '@gameagent/plugins';
+import { DIFFICULTY_PRESETS } from '@gameagent/ai-core';
 import { sessionManager } from '../session/SessionManager';
 import { gameLoopManager } from '../session/GameLoopManager';
 import { checkActionRate } from '../middleware/rateLimit';
@@ -36,10 +37,18 @@ import type { Action } from '@gameagent/game-core';
 // Zod schemas (input validation)
 // ---------------------------------------------------------------------------
 
+const PersonalityOverrideSchema = z.object({
+  reactionTime:  z.number().min(0).max(1).optional(),
+  mistakeRate:   z.number().min(0).max(1).optional(),
+  aggression:    z.number().min(0).max(1).optional(),
+  adaptability:  z.number().min(0).max(1).optional(),
+}).optional();
+
 const StartGameSchema = z.object({
   gameId: z.string().min(1),
   aiId: z.string().min(1),
   difficulty: z.enum(['easy', 'medium', 'hard', 'expert']).optional().default('medium'),
+  personality: PersonalityOverrideSchema,
 });
 
 const ActionSchema = z.object({
@@ -104,7 +113,21 @@ export async function gameRoutes(fastify: FastifyInstance): Promise<void> {
       tickRate: 60,
     });
 
+    // Build effective personality: start from difficulty preset, apply any client overrides
+    const basePersonality = { ...DIFFICULTY_PRESETS[difficulty] };
+    const overrides = body.data.personality;
+    const effectivePersonality = overrides ? {
+      reactionTime:  overrides.reactionTime  ?? basePersonality.reactionTime,
+      mistakeRate:   overrides.mistakeRate   ?? basePersonality.mistakeRate,
+      aggression:    overrides.aggression    ?? basePersonality.aggression,
+      adaptability:  overrides.adaptability  ?? basePersonality.adaptability,
+    } : basePersonality;
+
     const agentP2 = registry.createAI(aiId, 'p2', difficulty);
+    // Apply personality override if provided (agent exposes setPersonality)
+    if (overrides) {
+      agentP2.setPersonality(effectivePersonality);
+    }
 
     const session: GameSession = {
       id: sessionId,

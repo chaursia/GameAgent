@@ -162,7 +162,7 @@ export interface BrainContext {
  */
 export class Agent {
   readonly brain: Brain;
-  readonly personality: Personality;
+  private _personality: Personality;
   readonly playerId: PlayerId;
 
   private opponentHistory: Action[] = [];
@@ -174,10 +174,19 @@ export class Agent {
 
   constructor(brain: Brain, personality: Personality, playerId: PlayerId) {
     this.brain = brain;
-    this.personality = personality;
+    this._personality = { ...personality };
     this.playerId = playerId;
   }
 
+  /** Read current personality */
+  get personality(): Readonly<Personality> {
+    return this._personality;
+  }
+
+  /** Replace personality (e.g. from custom slider values) */
+  setPersonality(p: Personality): void {
+    this._personality = { ...p };
+  }
   // ------------------------------------------------------------------
   // Public API
   // ------------------------------------------------------------------

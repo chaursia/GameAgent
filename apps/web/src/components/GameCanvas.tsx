@@ -5,6 +5,8 @@
  *  1. Starts a session via POST /game/start
  *  2. Mounts a Phaser game instance running PongScene
  *  3. Tears down Phaser gracefully on unmount
+ *
+ * Phase 6: Includes personality sliders for advanced AI customisation.
  */
 
 import { useEffect, useRef, useState } from 'react';
@@ -12,11 +14,14 @@ import Phaser from 'phaser';
 import { PongScene } from '../scenes/PongScene';
 import type { PongSceneData } from '../scenes/PongScene';
 import { PONG_WIDTH, PONG_HEIGHT } from '@gameagent/plugins';
+import { DIFFICULTY_PRESETS } from '@gameagent/ai-core';
+import type { Personality, DifficultyLevel } from '@gameagent/ai-core';
+import { PersonalitySliders } from './PersonalitySliders';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = ''; // relative – proxied through Vite in dev
 
 interface GameCanvasProps {
-  difficulty?: 'easy' | 'medium' | 'hard' | 'expert';
+  difficulty?: DifficultyLevel;
   playerId?: 'p1' | 'p2';
   className?: string;
 }
@@ -33,6 +38,14 @@ export function GameCanvas({
   const [uiState, setUiState] = useState<UIState>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Personality state — initialised from the current difficulty preset
+  const [personality, setPersonality] = useState<Personality>({ ...DIFFICULTY_PRESETS[difficulty] });
+
+  // Sync personality to difficulty preset when difficulty prop changes
+  useEffect(() => {
+    setPersonality({ ...DIFFICULTY_PRESETS[difficulty] });
+  }, [difficulty]);
+
   // Tear-down on unmount
   useEffect(() => {
     return () => {
@@ -47,11 +60,16 @@ export function GameCanvas({
     setErrorMsg('');
 
     try {
-      // 1. Create a server session
+      // 1. Create a server session with difficulty + optional personality override
       const res = await fetch(`${API_BASE}/game/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ gameId: 'pong', aiId: 'pong-heuristic', difficulty }),
+        body: JSON.stringify({
+          gameId: 'pong',
+          aiId: 'pong-heuristic',
+          difficulty,
+          personality,
+        }),
       });
 
       if (!res.ok) {
@@ -95,8 +113,14 @@ export function GameCanvas({
     }
   }
 
+  function stopGame() {
+    gameRef.current?.destroy(true);
+    gameRef.current = null;
+    setUiState('idle');
+  }
+
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative flex flex-col gap-4 ${className}`}>
       {/* Phaser canvas mount point */}
       <div
         ref={containerRef}
@@ -108,7 +132,7 @@ export function GameCanvas({
       {uiState !== 'playing' && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 bg-black/80 backdrop-blur-sm rounded-2xl">
           {uiState === 'error' && (
-            <p className="text-red-400 text-sm font-mono px-6 text-center">{errorMsg}</p>
+            <p className="text-red-400 text-sm font-mono px-6 text-center max-w-md">{errorMsg}</p>
           )}
 
           <button
@@ -133,6 +157,24 @@ export function GameCanvas({
             Use ↑ ↓ arrow keys or W / S to move your paddle
           </p>
         </div>
+      )}
+
+      {/* Stop button while playing */}
+      {uiState === 'playing' && (
+        <button
+          onClick={stopGame}
+          className="self-center px-6 py-2 rounded-lg border border-white/10 text-slate-400 hover:text-white hover:border-white/30 text-sm font-semibold transition-all"
+        >
+          ✕ End Game
+        </button>
+      )}
+
+      {/* Personality sliders — only show when not playing */}
+      {uiState !== 'playing' && (
+        <PersonalitySliders
+          value={personality}
+          onChange={setPersonality}
+        />
       )}
     </div>
   );

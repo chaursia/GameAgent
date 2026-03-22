@@ -15,8 +15,15 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/game': 'http://localhost:3001',
-      '/health': 'http://localhost:3001',
+      // HTTP API routes
+      '/game': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+      '/health': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
     },
   },
   build: {
