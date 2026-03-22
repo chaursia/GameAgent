@@ -22,7 +22,7 @@ registry.registerAI({
   supportedGames: ['tictactoe'],
   factory: (playerId, difficulty = 'medium') =>
     new Agent(
-      new TicTacToeBrain(difficulty) as never,
+      new TicTacToeBrain(difficulty),
       DIFFICULTY_PRESETS[difficulty],
       playerId,
     ),

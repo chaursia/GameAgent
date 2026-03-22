@@ -22,7 +22,7 @@ registry.registerAI({
   supportedGames: ['pentago'],
   factory: (playerId, difficulty = 'medium') =>
     new Agent(
-      new PentagoBrain(difficulty) as never,
+      new PentagoBrain(difficulty),
       DIFFICULTY_PRESETS[difficulty],
       playerId,
     ),

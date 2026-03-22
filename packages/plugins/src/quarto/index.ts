@@ -22,7 +22,7 @@ registry.registerAI({
   supportedGames: ['quarto'],
   factory: (playerId, difficulty = 'medium') =>
     new Agent(
-      new QuartoBrain(difficulty) as never,
+      new QuartoBrain(difficulty),
       DIFFICULTY_PRESETS[difficulty],
       playerId,
     ),
