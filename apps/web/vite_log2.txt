@@ -1,0 +1,295 @@
+﻿[2m2:38:20 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because lockfile has changed
+
+  [32m[1mVITE[22m v6.4.1[39m  [2mready in [0m[1m1564[22m[2m[0m ms[22m
+
+  [32mΓ₧£[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[2m  [32mΓ₧£[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[2m[32m  Γ₧£[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+node.exe : 
+[33m[vite:css][postcss] 
+@import must precede all 
+other statements (besides 
+@charset or empty @layer)
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: ([33m[v  
+  ite:css]...r empty @laye   
+ r):String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+5  |  
+6  |  /* Google Fonts ΓÇö 
+loaded via @layer to avoid 
+FOUC */
+7  |  @import url('https://fo
+nts.googleapis.com/css2?famil
+y=Inter:wght@400;500;600;700;
+800;900&family=Orbitron:wght@
+700;900&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+8  |  
+9  |  @layer base {[39m
+[2m2:38:25 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:38:25 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:38:57 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m2:39:26 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:39:26 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:45:38 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mtailwind.config.js[22m
+[2m2:45:38 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:45:38 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:45:38 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:45:38 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:46:31 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/components/ui/Meteors.tsx[22m
+[2m2:46:32 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:46:32 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:46:32 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:46:32 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:46:33 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m2:46:33 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:46:33 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:46:49 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/CardSpotlight.tsx, /src/index.css[22m
+[2m2:54:31 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m2:54:33 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mΓ£¿ new dependencies optimized: [33mlucide-react[32m[39m
+[2m2:54:33 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mΓ£¿ optimized dependencies changed. reloading[39m
+[2m2:54:33 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:54:33 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:54:34 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:54:34 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:54:34 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:54:34 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:54:56 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/FloatingNav.tsx, /src/index.css[22m
+[2m2:55:28 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)
+[2m2:55:28 PM[22m 
+[31m[1m[vite][22m[39m 
+[31mhttp proxy error: 
+/health[39m
+AggregateError 
+[ECONNREFUSED]: 
+    at 
+internalConnectMultiple 
+(node:net:1142:49)
+    at afterConnectMultiple 
+(node:net:1723:7)

@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "paths": {
+      "@gameagent/game-core": ["../game-core/src/index.ts"],
+      "@gameagent/ai-core": ["../ai-core/src/index.ts"]
+    }
+  },
+  "references": [
+    { "path": "../game-core" },
+    { "path": "../ai-core" }
+  ],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

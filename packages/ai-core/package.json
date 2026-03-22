@@ -1,0 +1,29 @@
+{
+  "name": "@gameagent/ai-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI base classes (Brain, Personality, Agent) for GameAgent",
+  "main": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": "./dist/index.js",
+      "default": "./src/index.ts",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsc --build --watch",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@gameagent/game-core": "*"
+  },
+  "devDependencies": {
+    "typescript": "*",
+    "rimraf": "*"
+  }
+}

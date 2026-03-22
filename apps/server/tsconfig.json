@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "paths": {
+      "@gameagent/game-core": ["../../packages/game-core/src/index.ts"],
+      "@gameagent/ai-core": ["../../packages/ai-core/src/index.ts"],
+      "@gameagent/plugins": ["../../packages/plugins/src/index.ts"]
+    }
+  },
+  "references": [
+    { "path": "../../packages/game-core" },
+    { "path": "../../packages/ai-core" },
+    { "path": "../../packages/plugins" }
+  ],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
