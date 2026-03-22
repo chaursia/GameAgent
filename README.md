@@ -90,20 +90,26 @@ cd GameAgent
 npm install
 ```
 
-### Start the backend
+### Run (both together)
 
 ```bash
-cd apps/server
-npx tsx --conditions=source src/index.ts
-# Server: http://localhost:3001
+npm run dev
+# Backend:  http://localhost:3001
+# Frontend: http://localhost:5173
 ```
 
-### Start the frontend
+> Turborepo starts both the `server` and `web` apps in parallel with a single command.
+
+### Or run individually
 
 ```bash
+# Backend only
+cd apps/server
+npm run dev           # tsx --conditions=source watch src/index.ts
+
+# Frontend only
 cd apps/web
-npx vite --port 5173
-# Frontend: http://localhost:5173
+npm run dev           # vite --port 5173
 ```
 
 Open [http://localhost:5173](http://localhost:5173), scroll to **Play vs AI**, choose a game and difficulty, and click **▶ Play**.
