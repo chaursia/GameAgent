@@ -15,10 +15,10 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      // HTTP API routes
       '/game': {
         target: 'http://localhost:3001',
         changeOrigin: true,
+        ws: true,         // ← critical: upgrade WebSocket connections
       },
       '/health': {
         target: 'http://localhost:3001',

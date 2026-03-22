@@ -102,7 +102,7 @@ export default function App(): React.JSX.Element {
               <span className="tracking-wide">Explore Games →</span>
             </ShimmerButton>
             <a
-              href="https://github.com"
+              href="https://github.com/chaursia/GameAgent"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md text-sm font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-all hover:scale-105"

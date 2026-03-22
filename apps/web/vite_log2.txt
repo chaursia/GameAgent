@@ -303,3 +303,8 @@ internalConnectMultiple
 [2m3:32:46 PM[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
 [2m3:32:46 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because lockfile has changed
 [2m3:32:46 PM[22m [36m[1m[vite][22m[39m server restarted.
+[2m3:56:23 PM[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
+[2m3:56:24 PM[22m [36m[1m[vite][22m[39m server restarted.
+[2m4:06:15 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/GameCanvas.tsx[22m
+[2m4:08:08 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/GameCanvas.tsx[22m
+[2m4:10:54 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
