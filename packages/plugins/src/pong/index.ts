@@ -47,10 +47,7 @@ registry.registerAI({
   id: 'pong-heuristic',
   name: 'Heuristic AI',
   supportedGames: ['pong'],
-  factory: (playerId) => {
-    // Default to medium difficulty for this factory
-    // The caller can override by constructing with createAgentWithDifficulty()
-    const difficulty: DifficultyLevel = 'medium';
+  factory: (playerId, difficulty: DifficultyLevel = 'medium') => {
     const brain = new PongHeuristicBrain(ACCURACY_MAP[difficulty]);
     const personality = { ...DIFFICULTY_PRESETS[difficulty] };
     return new Agent(brain, personality, playerId);

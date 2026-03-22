@@ -51,7 +51,7 @@ export async function gameRoutes(fastify: FastifyInstance): Promise<void> {
       return reply.status(400).send({ error: body.error.flatten() });
     }
 
-    const { gameId, aiId } = body.data;
+    const { gameId, aiId, difficulty } = body.data;
     const sessionId = uuidv4();
 
     // Create the game engine via the plugin registry
@@ -61,8 +61,8 @@ export async function gameRoutes(fastify: FastifyInstance): Promise<void> {
       tickRate: 60,
     });
 
-    // Create the AI agent for P2
-    const agentP2 = registry.createAI(aiId, 'p2');
+    // Create the AI agent for P2 with the requested difficulty
+    const agentP2 = registry.createAI(aiId, 'p2', difficulty);
 
     const session: GameSession = {
       id: sessionId,

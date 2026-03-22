@@ -17,7 +17,7 @@
  */
 
 import type { GameEngine, GameConfig, PlayerId } from '@gameagent/game-core';
-import type { Agent } from '@gameagent/ai-core';
+import type { Agent, DifficultyLevel } from '@gameagent/ai-core';
 
 // ---------------------------------------------------------------------------
 // Game plugin
@@ -52,7 +52,7 @@ export interface AIPlugin {
   /** Which games this AI supports (matches GamePlugin.id) */
   supportedGames: string[];
   /** Create a fully initialised Agent for a player slot */
-  factory: (playerId: PlayerId) => Agent;
+  factory: (playerId: PlayerId, difficulty?: DifficultyLevel) => Agent;
 }
 
 // ---------------------------------------------------------------------------
@@ -114,13 +114,13 @@ export class PluginRegistry {
     return this.listAIs().filter((ai) => ai.supportedGames.includes(gameId));
   }
 
-  /** Create a new Agent instance for the given AI id */
-  createAI(aiId: string, playerId: PlayerId): Agent {
+  /** Create a new Agent instance for the given AI id and optional difficulty */
+  createAI(aiId: string, playerId: PlayerId, difficulty?: DifficultyLevel): Agent {
     const plugin = this.ais.get(aiId);
     if (!plugin) {
       throw new Error(`Unknown AI: "${aiId}". Did you register the plugin?`);
     }
-    return plugin.factory(playerId);
+    return plugin.factory(playerId, difficulty);
   }
 }
 

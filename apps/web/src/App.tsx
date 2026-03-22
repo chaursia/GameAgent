@@ -222,6 +222,132 @@ export default function App(): React.JSX.Element {
           </p>
         </section>
 
+        {/* ── AI System Section ── */}
+        <section id="ai-system" className="py-32 px-6 max-w-7xl mx-auto">
+          <div className="border-t border-white/5 pt-32">
+            <div className="flex flex-col items-center mb-20 text-center">
+              <div className="inline-flex px-3 py-1 rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-300 text-xs font-bold uppercase tracking-widest mb-4">
+                AI Architecture
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">The Brain System</h2>
+              <div className="h-1 w-20 bg-gradient-to-r from-pink-500 to-indigo-500 mt-6 rounded-full" />
+              <p className="text-slate-400 mt-6 max-w-2xl text-lg">
+                Every AI agent is composed of a <span className="text-pink-300 font-semibold">Brain</span> (pure decision logic) 
+                wrapped by a <span className="text-indigo-300 font-semibold">Personality</span> (human-likeness modifiers). 
+                Swap either layer without touching the other.
+              </p>
+            </div>
+
+            {/* Architecture Diagram */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-20">
+              {[
+                { label: 'GameState', color: 'border-slate-600 text-slate-300 bg-slate-900/60', arrow: true },
+                { label: 'Brain.decide()', color: 'border-indigo-500/40 text-indigo-300 bg-indigo-950/60', arrow: true },
+                { label: 'Personality filter', color: 'border-pink-500/40 text-pink-300 bg-pink-950/60', arrow: true },
+                { label: 'Action', color: 'border-emerald-500/40 text-emerald-300 bg-emerald-950/60', arrow: false },
+              ].map(({ label, color, arrow }) => (
+                <div key={label} className="flex items-center gap-4">
+                  <div className={`px-6 py-3 rounded-xl border font-mono text-sm font-bold ${color}`}>
+                    {label}
+                  </div>
+                  {arrow && <div className="text-slate-600 text-2xl hidden md:block">→</div>}
+                </div>
+              ))}
+            </div>
+
+            {/* Difficulty Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {([
+                {
+                  level: 'Easy', color: 'emerald', borderColor: 'border-emerald-500/20', bgColor: 'bg-emerald-500/5',
+                  stats: [
+                    { name: 'Accuracy', value: 45 },
+                    { name: 'Reaction Speed', value: 15 },
+                    { name: 'Aggression', value: 30 },
+                    { name: 'Adaptability', value: 10 },
+                  ],
+                  description: 'Slow reactions, frequent mistakes. Great for learning.',
+                  mistakeRate: '35%',
+                },
+                {
+                  level: 'Medium', color: 'blue', borderColor: 'border-blue-500/20', bgColor: 'bg-blue-500/5',
+                  stats: [
+                    { name: 'Accuracy', value: 72 },
+                    { name: 'Reaction Speed', value: 50 },
+                    { name: 'Aggression', value: 50 },
+                    { name: 'Adaptability', value: 40 },
+                  ],
+                  description: 'Balanced performance. A fair challenge for most players.',
+                  mistakeRate: '15%',
+                },
+                {
+                  level: 'Hard', color: 'orange', borderColor: 'border-orange-500/20', bgColor: 'bg-orange-500/5',
+                  stats: [
+                    { name: 'Accuracy', value: 90 },
+                    { name: 'Reaction Speed', value: 80 },
+                    { name: 'Aggression', value: 70 },
+                    { name: 'Adaptability', value: 70 },
+                  ],
+                  description: 'Tight tracking, rare mistakes. Demands precise play.',
+                  mistakeRate: '6%',
+                },
+                {
+                  level: 'Expert', color: 'red', borderColor: 'border-red-500/20', bgColor: 'bg-red-500/5',
+                  stats: [
+                    { name: 'Accuracy', value: 100 },
+                    { name: 'Reaction Speed', value: 100 },
+                    { name: 'Aggression', value: 90 },
+                    { name: 'Adaptability', value: 95 },
+                  ],
+                  description: 'Near-perfect trajectory prediction. Almost unbeatable.',
+                  mistakeRate: '1%',
+                },
+              ] as const).map(({ level, color, borderColor, bgColor, stats, description, mistakeRate }) => (
+                <div key={level} className={`rounded-2xl border ${borderColor} ${bgColor} p-6 flex flex-col gap-4 backdrop-blur-md`}>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-black text-white">{level}</h3>
+                    <span className={`text-xs font-bold px-2 py-1 rounded-full border border-${color}-500/30 bg-${color}-500/10 text-${color}-300`}>
+                      {mistakeRate} error
+                    </span>
+                  </div>
+                  <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
+                  <div className="space-y-3">
+                    {stats.map(({ name, value }) => (
+                      <div key={name}>
+                        <div className="flex justify-between text-xs text-slate-500 mb-1">
+                          <span>{name}</span>
+                          <span className="text-slate-400">{value}%</span>
+                        </div>
+                        <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full bg-${color}-500 rounded-full transition-all duration-700`}
+                            style={{ width: `${value}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Personality trait legend */}
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { name: 'reactionTime', desc: 'Delay before each action (0=instant, 1=slow)' },
+                { name: 'mistakeRate', desc: 'Probability the AI replaces optimal action with a random one' },
+                { name: 'aggression', desc: 'Scoring vs. defending balance (0=defensive, 1=offensive)' },
+                { name: 'adaptability', desc: 'How quickly the AI updates its model of the opponent' },
+              ].map(({ name, desc }) => (
+                <div key={name} className="bg-black/30 border border-white/5 rounded-xl p-4">
+                  <div className="font-mono text-xs text-indigo-300 mb-2">.{name}</div>
+                  <p className="text-slate-500 text-xs leading-relaxed">{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── Architecture Section (Premium Redesign) ── */}
         <section id="architecture" className="py-32 px-6">
           <div className="max-w-7xl mx-auto border-t border-white/5 pt-32">
